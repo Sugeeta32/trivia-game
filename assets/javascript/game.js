@@ -3,13 +3,17 @@ let currentQuestionIndex = 0;
 let loss = 0;
 let win = 0;
 let timer = 0;
-var clockRunning = false;
+
 
  $("#new").hide();
+
+ 
+ 
 
 //  Function to show the question and options
 
 function showQuestion() {
+	
 	counter = 20;
 	timer = setInterval(clock, 1000);
 	$("#firstPage").detach();
@@ -21,9 +25,15 @@ function showQuestion() {
 
 	$("#game").html(`<h3> ${question} </h3> ${showOptions(options)} 
 	${questionRemainingLineForUser()}`);
-    $("#timer").html("Timer :" + counter);
-
+	$("#timer").html("Timer :" + counter);
+	
+	
+	
 }
+
+
+
+
 
 function nextQuestion() {
 	const isQuestionOver = (questions.length - 1) === currentQuestionIndex;
@@ -74,19 +84,22 @@ $(document).on("click", ".option", function () {
 	if (answer === selectedOption) {
 		win++;
 		nextQuestion();
+		
 
 	} else {
 		loss++;
 		nextQuestion();
+		
 	}
 });
 
 function displayResult() {
 
 	$("#resetbtn").show();
-	$("#wins").html("Your score is  " + win + "" + " out of " + questions.length);
-	$("#loss").html("Loss:  " + loss);
+	$("#wins").html("Your score is  " + win + "" + " out of " + questions.length).show();
+	$("#loss").html("Loss:  " + loss).show();
 	$("#game").toggle();
+	
 };
 
 
@@ -97,8 +110,8 @@ function resetGame() {
 	timer = 0;
 	currentQuestionIndex = 0;
 	clearInterval(timer);
-	$("#wins").html("Correct: " + win);
-	$("#loss").html("Wrong: "+ loss);
+	$("#wins").html("Correct: " + win).hide();
+	$("#loss").html("Wrong: "+ loss).hide();
 
 	//  $("#wins").hide();
 	// $("#loss").hide();
@@ -122,3 +135,7 @@ function questionRemainingLineForUser() {
 
 }
 
+function playAudio() {
+	$("#pop").play();
+  }
+  

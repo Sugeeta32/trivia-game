@@ -39,7 +39,7 @@ var questions = [
     ],
         answer: "To keep one eye adjusted to the dark for going below deck"
 
-    },
+    },*/
     
     {
         ques: "What year did the Berlin Wall come down? ",
@@ -69,18 +69,18 @@ var questions = [
         "The ear" ],
         answer: "The ear"
 
-    },*/
-
-
-    {
-        ques: "What Atari-made video game was considered one of the worst video games of all time?",
-        options: ["The Empire Strikes Back",
-        "Superman",
-        "E.T.",
-        "Towering Inferno" ],
-        answer:"E.T.", 
-
     },
+
+
+    // {
+    //     ques: "What Atari-made video game was considered one of the worst video games of all time?",
+    //     options: ["The Empire Strikes Back",
+    //     "Superman",
+    //     "E.T.",
+    //     "Towering Inferno" ],
+    //     answer:"E.T.", 
+
+    // },
 
     {
         ques: "What’s the Largest Planet in the Solar System?",

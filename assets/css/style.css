@@ -2,7 +2,7 @@ body{
     background-color: rgba(146, 182, 202, 0.993);
 }
  .option{
-    
+    width: 50% fixed;
     border: 1px solid;
     padding: 15px;
     border-radius: 3px;
@@ -21,7 +21,8 @@ body{
 .container-fluid {
     margin-top: 200px;
 } 
+#timer{
+    color: rgb(255, 124, 1);
+    
 
-.container-fluid#new{
-    margin-top: 20px;
 }
