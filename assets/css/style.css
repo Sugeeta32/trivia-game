@@ -1,11 +1,27 @@
 body{
-    background-color: rgb(216, 142, 142);
+    background-color: rgba(146, 182, 202, 0.993);
 }
-.option{
+ .option{
+    
     border: 1px solid;
-    width: 50%;
     padding: 15px;
     border-radius: 3px;
     cursor: pointer;
     
+} 
+.page-footer{
+    background-color: #2c3e50!important;
+    color: #fff;
+    font-size: 80%;
+ }
+.jumbotron{
+    text-align: center;
+    
+}
+.container-fluid {
+    margin-top: 200px;
+} 
+
+.container-fluid#new{
+    margin-top: 20px;
 }

@@ -1,26 +1,28 @@
-let counter = 20;
+let counter = 0;
 let currentQuestionIndex = 0;
 let loss = 0;
 let win = 0;
-let timer;
-// function to go the next question and call this function after the player has lost or answered correctly
-// debugger;
-$("#reset").hide();
-showQuestion();
+let timer = 0;
+var clockRunning = false;
+
+ $("#new").hide();
 
 //  Function to show the question and options
 
 function showQuestion() {
 	counter = 20;
 	timer = setInterval(clock, 1000);
-
+	$("#firstPage").detach();
+	 $("#new").show();
+	$("#resetbtn").hide();
 	const question = questions[currentQuestionIndex].ques;
 	const options = questions[currentQuestionIndex].options;
 
-	$("#timer").html("Timer :" + counter);
-	$("#game").html(`<h3>  ${question} </h3>${showOptions(options)} 
+
+	$("#game").html(`<h3> ${question} </h3> ${showOptions(options)} 
 	${questionRemainingLineForUser()}`);
-	
+    $("#timer").html("Timer :" + counter);
+
 }
 
 function nextQuestion() {
@@ -29,21 +31,20 @@ function nextQuestion() {
 		alert("Game is over");
 
 		displayResult();
-		reset();
-		//clock();
+
 	} else {
 		currentQuestionIndex++;
 		showQuestion();
 	}
 }
 
-// function time up
-function timeUp() {
-	clearInterval(timer);
-
-	// loss++;
-
-	nextQuestion();
+// function to show the options using the for loop for 4 displayed options, which is in question.js
+function showOptions(options) {
+	var result = " ";
+	for (var i = 0; i < options.length; i++) {
+		result += `<p class ="option" dataAnswer="${options[i]}">${options[i]}</p>`;
+	}
+	return result;
 }
 
 // function to start and reset the timer for user 
@@ -54,75 +55,70 @@ function clock() {
 	// to stop the timer at 0 and not going in negative
 	if (counter === 0) {
 		timeUp();
-		// clearInterval(timer);
-		// loss++;
-		// nextQuestion();
-	}
-
-
-}
-
-// function to show the options using the for loop for 4 displayed options, which is in question.js
-function showOptions(options) {
-
-	var result = " ";
-	for (var i = 0; i < options.length; i++) {
-		result += `<p class ="option" dataAnswer="${options[i]}">${options[i]}</p>`;
 
 	}
-	return result;
 }
 
+// function time up
+function timeUp() {
+	clearInterval(timer);
+	counter = 20;
+	nextQuestion();
+}
 
 $(document).on("click", ".option", function () {
 
 	clearInterval(timer);
-
 	const selectedOption = $(this).attr("dataAnswer");
 	const answer = questions[currentQuestionIndex].answer;
-
 	if (answer === selectedOption) {
 		win++;
-		// $("#wins").html("Wins:  " + win);
 		nextQuestion();
-		console.log("win");
+
 	} else {
 		loss++;
-		// $("#loss").html("Loss:  " + loss);$("#loss").html("Loss:  " + loss);
 		nextQuestion();
-		console.log("lost")
-
 	}
-
 });
 
 function displayResult() {
-	$("#reset").show();
+
+	$("#resetbtn").show();
 	$("#wins").html("Your score is  " + win + "" + " out of " + questions.length);
-	 $("#loss").html("Loss:  " + loss);
-	 
+	$("#loss").html("Loss:  " + loss);
+	$("#game").toggle();
 };
 
 
-function reset() {
-	 
-	var reset = `<btn class="btn btn-primary" id ="reset">Let's Play again</btn>`
-	$("#reset").html(reset);
-	$("#reset").on("click", function () {
+function resetGame() {
+	counter = 0;
+	loss = 0;
+	win = 0;
+	timer = 0;
+	currentQuestionIndex = 0;
+	clearInterval(timer);
+	$("#wins").html("Correct: " + win);
+	$("#loss").html("Wrong: "+ loss);
 
-		counter = 20;
-		loss = 0;
-		win = 0;
-		timer = null;
-		currentQuestionIndex = 0;
-		showQuestion();
-	});
-
+	//  $("#wins").hide();
+	// $("#loss").hide();
 }
-function questionRemainingLineForUser(){
-	const questionsRemaining = questions.length-(currentQuestionIndex+1);
+
+var reset = (`<btn class="btn btn-primary" id ="resetbtn">Let's Play again</btn>`);
+$("#new").append(reset);
+$("#resetbtn").on("click", function () {
+	resetGame();
+	clearInterval(timer);
+	showQuestion();
+	// nextQuestion();
+	$("#game").toggle();
+});
+
+
+function questionRemainingLineForUser() {
+	const questionsRemaining = questions.length - (currentQuestionIndex + 1);
 	const totalQuestion = questions.length;
-
-	return `"Remaining questions: ${questionsRemaining}/${totalQuestion}`;
+	return `You have  ${questionsRemaining}/${totalQuestion} questions remaining ! `;
 
 }
+

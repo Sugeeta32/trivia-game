@@ -1,6 +1,6 @@
 
 var questions = [
-    {
+   /* {
         ques: "What is the world’s second tallest mountain?",
         options: ["Aconcagua in Argentina",
             "Mount McKinley in Alaska",
@@ -69,7 +69,7 @@ var questions = [
         "The ear" ],
         answer: "The ear"
 
-    },
+    },*/
 
 
     {
