@@ -1,6 +1,6 @@
 
 var questions = [
-   /* {
+    {
         ques: "What is the world’s second tallest mountain?",
         options: ["Aconcagua in Argentina",
             "Mount McKinley in Alaska",
@@ -39,7 +39,7 @@ var questions = [
     ],
         answer: "To keep one eye adjusted to the dark for going below deck"
 
-    },*/
+    },
     
     {
         ques: "What year did the Berlin Wall come down? ",
